@@ -1,127 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cards List - Bulma Templates</title>
-  <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-  <script src="https://kit.fontawesome.com/7dc3015a44.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Javascript Quiz</title>
 </head>
 
 <body>
-
-  <!-- START NAV -->
-  <nav class="navbar">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="#">
-          <img src="https://cdn.emk.dev/templates/bulma-logo-light.png" alt="Logo">
-        </a>
-        <span class="navbar-burger burger" data-target="navbarMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </div>
-      <div id="navbarMenu" class="navbar-menu">
-        <div class="navbar-end">
-          <a class="navbar-item is-active">
-            Home
-          </a>
-          <a class="navbar-item">
-            Examples
-          </a>
-          <a class="navbar-item">
-            Features
-          </a>
-          <a class="navbar-item">
-            Team
-          </a>
-          <a class="navbar-item">
-            Archives
-          </a>
-          <a class="navbar-item">
-            Help
-          </a>
-        </div>
-      </div>
+  <div class="quiz-container">
+    <div class="top">
+      <button class="highscores-btn" id="highscores-btn">View high scores</button>
+      <p id="timer"></p>
     </div>
-  </nav>
-  <!-- END NAV -->
-
-  <div class="container">
-    <div class="section">
-      <div class="columns">
-        <div class="column has-text-centered">
-          <h1 class="title" style="color: ghostwhite;">Bulma Card Layout Template</h1><br>
-        </div>
-      </div>
-      <div id="app" class="row columns is-multiline">
-        <div v-for="card in cardData" key="card.id" class="column is-4">
-          <div class="card large">
-            <div class="card-image">
-              <figure class="image is-16by9">
-                <img :src="card.image" alt="Image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img :src="card.avatar" alt="Image">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4 no-padding">{{card.user.title}}</p>
-                  <p>
-                    <span class="title is-6">
-                      <a :href=`http://twitter.com/${card.user.handle}`> {{card.user.handle}} </a> </span>
-                  </p>
-                  <p class="subtitle is-6">{{card.user.title}}</p>
-                </div>
-              </div>
-              <div class="content">
-                {{card.content}}
-                <div class="background-icon"><span class="icon-twitter"></span></div>
-              </div>
-            </div>
+    <div class="middle">
+      <header id="header" class="header">
+        <h1>Quiz</h1>
+        <p> Welcome to the Javascript Code Quiz! You will have one minute to answer each question. At the end of the
+          quiz the amount of questions answered correctly will contribute to your overall score.</p>
+        <button class="start-btn" id="start-btn">Start Quiz</button>
+      </header>
+      <main>
+        <section id="question-screen" class="question-screen hide">
+          <h2 id="question" class="question">Question</h2>
+          <div id="answer-buttons" class="btn-grid">
+            <button class="btn">Answer a</button>
+            <button class="btn">Answer b</button>
+            <button class="btn">Answer c</button>
+            <button class="btn">Answer d</button>
           </div>
-        </div>
-      </div>
+          <footer id="answer-result" class="answer-result">
+            <button id="next-btn" class="next-btn hide">Next</button>
+          </footer>
+        </section>
+        <section id="end" class="end hide">
+          <h2 id="finish">Quiz Over</h2>
+          <p id="score">Your score: 0</p>
+          <div id="high-score-entry" class="high-score-entry">
+            <label class="Name">Enter Your Initials:</label>
+            <input type="text" id="initials" placeholder="Your Initials">
+            <button class="submit-btn" id="submit-btn">Submit</button>
+          </div>
+        </section>
+        <section id="highscores-screen" class="highscores-screen hide">
+          <h2 id="highscores-title">Highscores:</h2>
+          <ol id="scores">
+          </ol>
+          <button id="back-to-quiz">Back to Quiz</button>
+          <button id="clear-scores-btn" class="red-nav-button">Clear scores</button>
+        </section>
+      </main>
     </div>
   </div>
-  <footer class="footer">
-    <div class="container">
-      <div class="content has-text-centered">
-        <div class="soc">
-          helllooooww
-        </div>
-
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-    crossorigin="anonymous"></script>
-
-
   <script src="assets/js/script.js"></script>
   <script src="assets/js/facts.js"></script>
-  <!-- Using Vue to populate cards to reduce redundant code -->
-  <!-- <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        cardData: cardsData
-      }
-    })
-
-  </script> -->
 </body>
 
 </html>

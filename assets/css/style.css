@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    box-sizing: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --hue-neutral: 200;
+    --hue-wrong: 0;
+    --hue-correct: 145;
+}
+
+.quiz-container {
+    --hue: var(--hue-neutral);
+    background-color: hsl(var(--hue), 100%, 20%);
+    padding: 5px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.highscores {
+    color: purple;
+}
+
+#highscores-title {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.top {
+    font-size: 20px;
+}
+
+.top p {
+    float: right;
+}
+
+h1 h2 {
+    text-align: center;
+}
+
+.middle {
+    height: 100%;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+.header p {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+}
+
+.start-btn {
+    text-align: center;
+}
+
+.next-btn {
+    text-align: right;
+}
+
+button {
+    font-weight: bold;
+    border: solid black;
+    background: lightblue;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: blueviolet;
+    color: white;
+}
+
+#finish {
+    text-align: center;
+}
+
+.end p {
+    text-align: center;
+}
+
+.Name {
+    text-align: center;
+}
+
+label {
+    color: #818181;
+    font-size: 1.3em;
+    text-align: right;
+    font-weight: 900;
+}
+
+#clear-scores-btn {
+    margin-top: 100px;
+}
+
+#back-to-quiz {
+    float: right;
+    margin-top: 100px;
+}
+
+.submit-btn {
+    float: right;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat (2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.hide {
+    display: none;
+}
+
+.quiz-container.correct {
+    --hue: var(--hue-correct);
+}
+
+.quiz-container.wrong {
+    --hue: var(--hue-wrong);
+}
+
+.btn.wrong {
+    --hue: var(--hue-wrong);
+}
+
+.btn.correct {
+    --hue: var(--hue-correct);
+}
+
+.btn {
+    --hue: var(--hue-neutral);
+    border: 1px solid hsl(var(--hue), 100%, 30%);
+    background-color: hsl(var(--hue), 100%, 50%);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
+
+.question {
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 25px;
+    color: aquamarine;
+}
+
+#score {
+    color: aquamarine;
+    font-size: 15px;
+    padding-bottom: 100px;
+}
+
+#finish {
+    padding-bottom: 25px;
+}
+
+.Name {
+    color: aquamarine;
+}
+
+label {
+    font-size: 25px;
+}
+
+#timer {
+    color: aquamarine;
+    font-size: 30px;
+    padding-right: 30px;
+}
+
+#scores {
+    color: aquamarine;
+    text-align: center;
+    font-size: 25px;
+}
+
+li {
+    width: fit-content;
+    margin: auto;
+}
+
+li::marker {
+    margin-left: 500px;
+}
