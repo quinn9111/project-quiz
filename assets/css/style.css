@@ -203,3 +203,8 @@ li {
 li::marker {
     margin-left: 500px;
 }
+
+footer {
+    padding: 1%;
+    text-align: center;
+}
