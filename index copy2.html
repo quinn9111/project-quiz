@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Javascript Quiz</title>  
+</head>
+
+<body>
+  <div class="quiz-container">
+    <div class="top">
+      <button class="highscores-btn" id="highscores-btn">View high scores</button>
+      <p id="timer"></p>
+    </div>
+    <div class="middle">
+      <header id="header" class="header">
+        <h1>Quiz</h1>
+        <p> Welcome to the Javascript Code Quiz! You will have one minute to answer each question. At the end of the
+          quiz the amount of questions answered correctly will contribute to your overall score.</p>
+        <button class="start-btn" id="start-btn">Start Quiz</button>
+      </header>`
+      <main>
+        <section id="question-screen" class="question-screen hide">
+          <h2 id="question" class="question">Question</h2>  
+          <div id="answer-buttons" class="btn-grid">
+            <button id="answer_a" value="answer_a"></button>
+            <button id="answer_b" value="answer_b"></button>
+            <button id="answer_c" value="answer_c"></button>
+            <button id="answer_d" value="answer_d"></button>
+          </div> 
+
+        </section>
+        <section id="submit-screen" >
+          <div><input type="submit" id="submit" value="Submit" class="submit-screen hide"/></div>
+        </section>
+          <footer id="answer-result" class="answer-result">
+            <button id="next-btn" class="next-btn hide">Next</button>
+          </footer>
+        </section>
+        <section id="end" class="end hide">
+          <h2 id="finish">Quiz Over</h2>
+          <p id="score">Your score: 0</p>
+          <div id="high-score-entry" class="high-score-entry">
+            <label class="Name">Enter Your Initials:</label>
+            <input type="text" id="initials" placeholder="Your Initials">
+            <button class="submit-btn" id="submit-btn">Submit</button>
+          </div>
+        </section>
+        <section id="highscores-screen" class="highscores-screen hide">
+          <h2 id="highscores-title">Highscores:</h2>
+          <ol id="scores">
+          </ol>
+          <button id="back-to-quiz">Back to Quiz</button>
+          <button id="clear-scores-btn" class="red-nav-button">Clear scores</button>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="assets/js/script copy.js"></script>
+<!--   <script src="assets/js/script.js"></script> -->
+<!--   <script src="assets/js/facts.js"></script> -->
+</body>
+
+</html>
