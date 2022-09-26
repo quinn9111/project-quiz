@@ -97,12 +97,12 @@ button:hover {
     text-align: center;
 }
 
-label {
+/* label {
     color: #818181;
     font-size: 1.3em;
     text-align: right;
     font-weight: 900;
-}
+} */
 
 #clear-scores-btn {
     margin-top: 100px;
@@ -179,9 +179,9 @@ h2 {
     color: aquamarine;
 }
 
-label {
+/* label {
     font-size: 25px;
-}
+} */
 
 #timer {
     color: aquamarine;
@@ -195,18 +195,18 @@ label {
     font-size: 25px;
 }
 
-li {
+/* li {
     width: fit-content;
     margin: auto;
 }
 
 li::marker {
     margin-left: 500px;
-}
+} */
 
-footer {
-    /* position: fixed; */
-    padding: 1%;
+/* footer { */
+/* position: fixed; */
+/* padding: 1%;
     margin: 1%;
     text-align: center;
-}
+} */
