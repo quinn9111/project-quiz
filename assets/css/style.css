@@ -1,8 +1,15 @@
 * {
+    overflow-y: hidden;
     margin: 0;
     box-sizing: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+main {
+    padding: 40px 30px;
+    border-radius: 10px;
+    background-color: rgba(34, 34, 34, 0.212);
+    border: none;
 }
 
 :root {
@@ -12,6 +19,7 @@
 }
 
 .quiz-container {
+    background: linear-gradient(30deg, #f1f7ecc5, rgba(128, 0, 0, 0.616) );
     --hue: var(--hue-neutral);
     background-color: hsl(var(--hue), 100%, 20%);
     padding: 5px;
@@ -31,6 +39,7 @@
 }
 
 .top {
+    overflow-y: visible;
     font-size: 20px;
 }
 
@@ -73,11 +82,15 @@ h1 h2 {
 }
 
 button {
+    color: whitesmoke;
     font-weight: bold;
-    border: solid black;
-    background: lightblue;
+    border: solid whitesmoke;
+    background: rgba(128, 0, 0, 0.61);
     padding: 10px 20px;
     font-size: 20px;
+}
+.highscores-btn {
+    
 }
 
 button:hover {
@@ -154,6 +167,10 @@ label {
     outline: none;
 }
 
+.question-screen {
+    padding: 50px;
+}
+
 .question {
     color: white;
     text-align: center;
@@ -162,11 +179,11 @@ label {
 
 h2 {
     font-size: 25px;
-    color: aquamarine;
+    color: whitesmoke;
 }
 
 #score {
-    color: aquamarine;
+    color: whitesmoke;
     font-size: 15px;
     padding-bottom: 100px;
 }
@@ -176,7 +193,7 @@ h2 {
 }
 
 .Name {
-    color: aquamarine;
+    color: whitesmoke;
 }
 
 label {
@@ -184,7 +201,8 @@ label {
 }
 
 #timer {
-    color: aquamarine;
+    font-family: fantasy;
+    color: whitesmoke;
     font-size: 30px;
     padding-right: 30px;
 }
