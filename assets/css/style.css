@@ -205,6 +205,8 @@ li::marker {
 }
 
 footer {
+    /* position: fixed; */
     padding: 1%;
+    margin: 1%;
     text-align: center;
 }
