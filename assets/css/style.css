@@ -16,6 +16,7 @@ main {
     --hue-neutral: 200;
     --hue-wrong: 0;
     --hue-correct: 145;
+    --hue-new: rgba(128, 0, 0, 0.616) ;
 }
 
 .quiz-container {
@@ -64,6 +65,8 @@ h1 h2 {
     text-align: center;
     color: white;
     font-size: 30px;
+    border-radius: 10px;
+    background-color: rgba(34, 34, 34, 0.212);
 }
 
 .header p {
@@ -89,13 +92,22 @@ button {
     padding: 10px 20px;
     font-size: 20px;
 }
+.btn {
+    --hue: var(--hue-neutral);
+    border: 1px solid whitesmoke;
+    background-color: rgba(128, 0, 0, 0.61);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
 .highscores-btn {
     
 }
 
 button:hover {
-    background-color: blueviolet;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
 }
 
 #finish {
@@ -150,22 +162,14 @@ label {
 }
 
 .btn.wrong {
-    --hue: var(--hue-wrong);
+    background-color: red;
 }
 
 .btn.correct {
-    --hue: var(--hue-correct);
+    background-color: green;
 }
 
-.btn {
-    --hue: var(--hue-neutral);
-    border: 1px solid hsl(var(--hue), 100%, 30%);
-    background-color: hsl(var(--hue), 100%, 50%);
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: white;
-    outline: none;
-}
+
 
 .question-screen {
     padding: 50px;
@@ -208,7 +212,7 @@ label {
 }
 
 #scores {
-    color: aquamarine;
+    color: whitesmoke;
     text-align: center;
     font-size: 25px;
 }
