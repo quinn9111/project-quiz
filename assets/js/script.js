@@ -2,6 +2,11 @@ const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const questionContainerElement = document.getElementById("question-screen")
 const questionElement = document.getElementById("question")
+const choices = Array.from(document.getElementsByClassName('choice-text'));
+const optionAElement = document.getElementById("answer_a")
+const optionBElement = document.getElementById("answer_b")
+const optionCElement = document.getElementById("answer_c")
+const optionDElement = document.getElementById("answer_d") 
 const answerButtonsElement = document.getElementById("answer-buttons")
 const header = document.getElementById("header")
 const highScoresButton = document.getElementById("highscores-btn")
@@ -14,18 +19,24 @@ const scoreList = document.getElementById('scores')
 const clearScoresButton = document.getElementById('clear-scores-btn')
 const backtoQuizButton = document.getElementById('back-to-quiz')
 const displayTimer = document.getElementById('timer')
+const submitButtton = document.getElementById('submit')
+const submitAnswer=document.getElementById('submitAnswer')
+var correctAnswerElement
 var quizTimer
 var interval
 var seconds
 var grade
 var highScores = []
-var counter
-let shuffledQuestions, currentQuestionIndex
+var counter 
+let questions = []
+
+//let shuffledQuestions, currentQuestionIndex
 startButton.addEventListener("click", startQuiz)
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
 })
+
 submitButton.addEventListener("click", handleSubmit)
 clearScoresButton.addEventListener("click", clearScores)
 backtoQuizButton.addEventListener("click", restart)
@@ -50,34 +61,62 @@ function startTimer() {
         showSecondsAsString(seconds)
     }, 1000)
 }
+
 function startQuiz() {
-    startTimer()
+  //  startTimer()
     counter = 0
     initialsElement.value = ""
     startButton.classList.add("hide")
     header.classList.add("hide")
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove("hide")
+    submitAnswer.classList.remove("hide")
     setNextQuestion()
 }
+
+
 function setNextQuestion() {
     resetState()
-    showQuestion(shuffledQuestions[currentQuestionIndex])
 }
-function showQuestion(question) {
-    questionElement.innerText = question.question
-    question.answers.forEach(answer => {
-        const button = document.createElement('button')
-        button.innerText = answer.text
-        button.classList.add('btn')
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
+
+ function getApiQuestion() {
+    var requestUrl = 'https://quizapi.io/api/v1/questions?apiKey=NFUXqcTPppFSXafHQp9yM04DHprK1iUc6fbqCmiT&category=sql&difficulty=Medium&limit=10';
+    fetch(requestUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+
+        console.log(data);
+        for (let i=0; i < data.length; i++) {
+            let question = {}
+            question.questionText = data[i].question
+            question.answers = []
+            for ( [key, value] of Object.entries(data[i].answers)) {
+                if (value) question.answers.push(value)
+                if (key == data[i].correct_answer) question.correct = value
+            }
+
+            if (question.questionText) questions.push(question)
         }
-        button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChild(button)
+        console.log(questions)
+        displayQuestion(0)
     })
 }
+
+function displayQuestion(index) {
+    questionElement.innerText=questions[index].questionText
+
+    for (let i=0; i < questions[index].answers.length; i++) {
+        let button=document.createElement('button')
+        button.textContent=questions[index].answers[i]
+        button.addEventListener('click',selectAnswer)
+        button.setAttribute('isCorrect', questions[index].answers[i] == questions[index].correct)
+        answerButtonsElement.appendChild(button)
+    }
+}
+   startButton.addEventListener('click', getApiQuestion); 
+
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -87,8 +126,9 @@ function resetState() {
 }
 function selectAnswer(e) {
     const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    if (correct) {
+    const correct = selectedButton.getAttribute('iscorrect')
+    if (correct === 'true') {
+        alert('Good job!')
         counter = counter + 1
     }
     else {
@@ -105,6 +145,8 @@ function selectAnswer(e) {
         handleTimeout()
     }
 }
+
+
 function endQuiz() {
     endScreen.classList.remove('hide')
     questionContainerElement.classList.add('hide')
@@ -163,51 +205,4 @@ function restart() {
     startButton.classList.remove("hide")
     header.classList.remove("hide")
     highScoresScreen.classList.add('hide')
-}
-const questions = [
-    {
-        question: "Arrays in Javascript are used to store ______.",
-        answers: [
-            { text: "Numbers and strings", correct: false },
-            { text: "Other arrays", correct: false },
-            { text: "Objects", correct: false },
-            { text: "All of the above", correct: true },
-        ]
-    },
-    {
-        question: "Which of the following is the proper way to declare a class in javascript?",
-        answers: [
-            { text: "class.apple", correct: true },
-            { text: "apple.class", correct: false },
-            { text: "appleClass", correct: false },
-            { text: "class Apple", correct: false },
-        ]
-    },
-    {
-        question: "What is the HTML element used to link the index.html to the javascript?",
-        answers: [
-            { text: "<js>", correct: false },
-            { text: "<script>", correct: true },
-            { text: "<stylesheet>", correct: false },
-            { text: "<scripter>", correct: false },
-        ]
-    },
-    {
-        question: "How do you write a message in an alert box?",
-        answers: [
-            { text: "alert(message)", correct: true },
-            { text: "msg(message)", correct: false },
-            { text: "message(alert)", correct: false },
-            { text: "alert(msg)", correct: false },
-        ]
-    },
-    {
-        question: "What of the following expresses correct javascript syntax?",
-        answers: [
-            { text: "appendChild{}", correct: false },
-            { text: "AppendChild()", correct: false },
-            { text: "appendChild()", correct: true },
-            { text: "childAppend()", correct: false },
-        ]
-    }
-]
+} 
