@@ -10,7 +10,7 @@ const optionDElement = document.getElementById("answer_d");
 const answerButtonsElement = document.getElementById("answer-buttons");
 const header = document.getElementById("header");
 const highScoresButton = document.getElementById("highscores-btn");
-const submitButton = document.getElementById("submit-btn");
+// const submitButton = document.getElementById("submit-btn");
 const endScreen = document.getElementById("end");
 const scoreElement = document.getElementById("score");
 const initialsElement = document.getElementById("initials");
@@ -19,8 +19,8 @@ const scoreList = document.getElementById("scores");
 const clearScoresButton = document.getElementById("clear-scores-btn");
 const backtoQuizButton = document.getElementById("back-to-quiz");
 const displayTimer = document.getElementById("timer");
-const submitButtton = document.getElementById("submit");
-const submitAnswer = document.getElementById("submitAnswer");
+// const submitButtton = document.getElementById("submit");
+// const submitAnswer = document.getElementById("submitAnswer");
 var correctAnswerElement;
 var quizTimer;
 var interval;
@@ -31,16 +31,18 @@ var counter;
 let questions = [];
 
 //let shuffledQuestions, currentQuestionIndex
-startButton.addEventListener("click", startQuiz);
-nextButton.addEventListener("click", () => {
-  currentQuestionIndex++;
-  setNextQuestion();
-});
+//coppied
+// startButton.addEventListener("click", startQuiz);
+// nextButton.addEventListener("click", () => {
+//   currentQuestionIndex++;
+//   setNextQuestion();
+// });
 
-submitButton.addEventListener("click", handleSubmit);
-clearScoresButton.addEventListener("click", clearScores);
-backtoQuizButton.addEventListener("click", restart);
-highScoresButton.addEventListener("click", viewHighScores);
+// submitButton.addEventListener("click", handleSubmit);
+// clearScoresButton.addEventListener("click", clearScores);
+// backtoQuizButton.addEventListener("click", restart);
+// highScoresButton.addEventListener("click", viewHighScores);
+
 function showSecondsAsString() {
   const string = seconds.toString();
   displayTimer.innerHTML = string;
@@ -70,7 +72,7 @@ function startQuiz() {
   //shuffledQuestions = questions.sort(() => Math.random() - .5)
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
-  submitAnswer.classList.remove("hide");
+  //   submitAnswer.classList.remove("hide");
   setNextQuestion();
 }
 
@@ -120,7 +122,8 @@ function displayQuestion(index) {
   }
 }
 
-startButton.addEventListener("click", getApiQuestion);
+//coppied
+// startButton.addEventListener("click", getApiQuestion);
 
 function resetState() {
   clearStatusClass(document.body);
@@ -209,3 +212,16 @@ function restart() {
   header.classList.remove("hide");
   highScoresScreen.classList.add("hide");
 }
+
+startButton.addEventListener("click", startQuiz);
+nextButton.addEventListener("click", () => {
+  currentQuestionIndex++;
+  setNextQuestion();
+});
+
+// submitButton.addEventListener("click", handleSubmit);
+clearScoresButton.addEventListener("click", clearScores);
+backtoQuizButton.addEventListener("click", restart);
+highScoresButton.addEventListener("click", viewHighScores);
+
+startButton.addEventListener("click", getApiQuestion);
