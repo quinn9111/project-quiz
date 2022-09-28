@@ -20,12 +20,15 @@ const clearScoresButton = document.getElementById('clear-scores-btn')
 const backtoQuizButton = document.getElementById('back-to-quiz')
 const displayTimer = document.getElementById('timer')
 const submitButtton = document.getElementById('submit')
+const submitAnswer=document.getElementById('submitAnswer')
+var correctAnswerElement
 var quizTimer
 var interval
 var seconds
 var grade
 var highScores = []
 var counter 
+let questions = []
 
 //let shuffledQuestions, currentQuestionIndex
 startButton.addEventListener("click", startQuiz)
@@ -68,14 +71,14 @@ function startQuiz() {
     //shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove("hide")
-    submitButtton.classList.remove("hide")
+    submitAnswer.classList.remove("hide")
     setNextQuestion()
 }
 
 
 function setNextQuestion() {
     resetState()
-    //getApiQuestion()
+   // getApiQuestion()
     //showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 /*  function showQuestion(question) {
@@ -93,50 +96,118 @@ function setNextQuestion() {
 } */
   
  function getApiQuestion() {
-    var requestUrl = 'https://quizapi.io/api/v1/questions?apiKey=NFUXqcTPppFSXafHQp9yM04DHprK1iUc6fbqCmiT&category=sql&difficulty=Medium&limit=1';
+    var requestUrl = 'https://quizapi.io/api/v1/questions?apiKey=NFUXqcTPppFSXafHQp9yM04DHprK1iUc6fbqCmiT&category=sql&difficulty=Medium&limit=10';
     fetch(requestUrl)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
+
+       
         console.log(data);
-         for (var i = 0; i < 1; i++) {
-            questionElement.textContent  = data[i].question;
+        for (let i=0; i < data.length; i++) {
+            let question = {}
+            question.questionText = data[i].question
+            question.answers = []
+           // questionElement.innerText=thing
+            for ( [key, value] of Object.entries(data[i].answers)) {
+                if (value) question.answers.push(value)
+                if (key == data[i].correct_answer) question.correct = value
+            }
+
+            if (question.questionText) questions.push(question)
+        }
+        console.log(questions)
+        displayQuestion(0)
+    })
+}
+
+function displayQuestion(index) {
+    questionElement.innerText=questions[index].questionText
+
+    for (let i=0; i < questions[index].answers.length; i++) {
+        // create button - answers[j]
+        let button=document.createElement('button')
+        button.textContent=questions[index].answers[i]
+        button.addEventListener('click',selectAnswer)
+        button.setAttribute('isCorrect', questions[index].answers[i] == questions[index].correct)
+        answerButtonsElement.appendChild(button)
+    }
+}
+
+/*          for (var i = 0; i < data.length; i++) {
+            let thing=data[i].question
+            let answer=data[i].answers
+        
+
+
+            let answerB=data[i].answers.answer_b
+            let answerC=data[i].answers.answer_c
+            let answerD=data[i].answers.answer_d
+            console.log('***');
+            console.log(answerB, answerC, answerD)
+            questionElement.innerText=thing
+            const button=document.createElement('button')
+            button.textContent=answer
+
+
+
+            const buttonA=document.createElement('button')
+            buttonA.textContent=answerB
+            const buttonB=document.createElement('button')
+            buttonB.textContent=answerB
+            const buttonC=document.createElement('button')
+            buttonC.textContent=answerC
+            const buttonD=document.createElement('button')
+            buttonD.textContent=answerD
+ 
+            button.classList.add('btn')
+            if (answer.correct) {
+                button.dataset.correct=answer.correct
+            }
+            button.addEventListener('click',selectAnswer)
+            answerButtonsElement.appendChild(button) */
+
+         //   console.log(thing)
+
+/*             questionElement.textContent  = data[i].question;
             questionContainerElement.appendChild(questionElement)
 
             optionAElement.textContent  = data[i].answers.answer_a;
             optionBElement.textContent  = data[i].answers.answer_b;
             optionCElement.textContent  = data[i].answers.answer_c;
             optionDElement.textContent  = data[i].answers.answer_d;
-            //correctAnswerElement.textContent  = data[i].correct_answer;
+           // correctAnswerElement.textContent  = data[i].correct_answer;
 
            answerButtonsElement.appendChild(optionAElement);
            answerButtonsElement.appendChild(optionBElement);
            answerButtonsElement.appendChild(optionCElement);
            answerButtonsElement.appendChild(optionDElement);
 
+         //  localStorage.setItem(correctAnswerElement);
+
            //var mySelectedAnswer=document.optionAElement.onclick;
-           //console.log(mySelectedAnswer)
+           //console.log(mySelectedAnswer) */
     
 
-        } 
-       });
-   }
+/*         } 
+       }); */
+   //}
+
    startButton.addEventListener('click', getApiQuestion); 
 
-/* function getUserAnswer()
+/*  function getUserAnswer(){
         getApiQuestion()
-            answerButtonsElement.onabort('click', function(){
-                console.log('#answerButtonsElement').attr('value')
-            }
-        });
-    }   */
-        
-
-
-
-
-
+            answerButtonsElement.on('click', function(){
+                var userselected = console.log('#answerButtonsElement').attr('value')
+                localStorage.setItem(userselected)
+                
+            } 
+        );
+    } */
+    
+/*     submitAnswer.addEventListener('click', getUserAnswer);
+ */
 
 function resetState() {
     clearStatusClass(document.body)
@@ -147,8 +218,9 @@ function resetState() {
 }
 function selectAnswer(e) {
     const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    if (correct) {
+    const correct = selectedButton.getAttribute('iscorrect')
+    if (correct === 'true') {
+        alert('Good job!')
         counter = counter + 1
     }
     else {
