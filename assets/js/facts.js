@@ -8,7 +8,7 @@ var apiCall = function () {
         headers: { 'X-Api-Key': '4HOJeJLspZDYSk1lag9NBQ==ppIbbftGUimwIf2P' },
         contentType: 'application/json',
         success: function (result) {
-            console.log(result[0].fact);
+            // console.log(result[0].fact);
             var randomFact = result[0].fact;
             displayFact(randomFact);
 
