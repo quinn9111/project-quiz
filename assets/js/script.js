@@ -33,10 +33,10 @@ let questions = [];
 let shuffledQuestions, currentQuestionIndex
  startButton.addEventListener("click", startQuiz);
 
-submitButton.addEventListener("click", handleSubmit);
+//submitButton.addEventListener("click", handleSubmit);
 clearScoresButton.addEventListener("click", clearScores);
 backtoQuizButton.addEventListener("click", restart);
-highScoresButton.addEventListener("click", viewHighScores);
+//highScoresButton.addEventListener("click", viewHighScores);
 
 function showSecondsAsString() {
   const string = seconds.toString();
@@ -61,7 +61,6 @@ function startTimer() {
 function startQuiz() {
   //  startTimer()
   counter = 0;
-  initialsElement.value = "";
   startButton.classList.add("hide");
   header.classList.add("hide");
   //shuffledQuestions = questions.sort(() => Math.random() - .5)
@@ -77,7 +76,7 @@ function handleLastQuestion () {
 }
 function setNextQuestion() {
     resetState();
-    console.log(currentQuestionIndex)
+    nextButton.classList.add("hide")
     if(currentQuestionIndex == questions.length -1) {
         handleLastQuestion()
     }
@@ -94,7 +93,6 @@ function getApiQuestion() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       for (let i = 0; i < data.length; i++) {
         let question = {};
         question.questionText = data[i].question;
@@ -107,7 +105,6 @@ function getApiQuestion() {
 
         if (question.questionText) questions.push(question);
       }
-      console.log(questions);
       displayQuestion(0);
     });
 }
@@ -118,6 +115,7 @@ function displayQuestion(index) {
   for (let i = 0; i < questions[index].answers.length; i++) {
     // create button - answers[j]
     let button = document.createElement("button");
+
     button.textContent = questions[index].answers[i];
     button.addEventListener("click", selectAnswer);
     button.setAttribute(
@@ -125,7 +123,7 @@ function displayQuestion(index) {
       questions[index].answers[i] == questions[index].correct
     );
     answerButtonsElement.appendChild(button);
-    nextButton.classList.remove("hide")
+    //nextButton.classList.remove("hide")
   }
 }
 
@@ -134,29 +132,39 @@ function displayQuestion(index) {
 
 function resetState() {
   clearStatusClass(document.body);
-  nextButton.classList.add("hide");
+  
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
 }
-//function resetQuiz() {
-//TODO
-//}
+function resetQuiz() {
+    questions = []
+    resetState()
+    header.classList.remove("hide")
+    startButton.classList.remove("hide")
+    endScreen.classList.add("hide")
+    submitButton.classList.add("hide")
+    questionContainerElement.classList.add("hide")
+ }
 function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.getAttribute("iscorrect");
   if (correct === "true") {
-    selectedButton.classList.add("correct");
+   // selectedButton.classList.add("correct");
+   // alert('Good job!')
+   selectedButton.style.backgroundColor = "green",
     counter = counter + 1;
   } else {
-    selectedButton.classList.add("wrong")
+   // selectedButton.classList.add("wrong")
+   selectedButton.style.backgroundColor = "red"
     seconds = seconds - 5;
   }
+  nextButton.classList.remove("hide")
   setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach((button) => {
     setStatusClass(button, button.dataset.correct);
   });
-  if (shuffledQuestions.length > currentQuestionIndex + 1) {
+  if (questions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove("hide");
   } else {
     //when there are no more questions
@@ -193,7 +201,6 @@ function handleSubmit() {
   let initials = initialsElement.value;
   let entry = initials + " - " + grade;
   highScores.push(entry);
-  console.log(highScores);
   removeAllChildNodes(scoreList);
   highScores.forEach((score) => {
     let li = document.createElement("li");
@@ -236,7 +243,3 @@ backtoQuizButton.addEventListener("click", restart);
 highScoresButton.addEventListener("click", viewHighScores);
 
 startButton.addEventListener("click", startQuiz);
-
-      
-      
-

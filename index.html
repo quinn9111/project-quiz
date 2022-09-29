@@ -6,20 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
   <title>Javascript Quiz?</title>
 </head>
 
 <body>
   <div class="quiz-container">
     <div class="top">
-      <button class="highscores-btn" id="highscores-btn">View high scores</button>
+      <!-- //<button class="highscores-btn" id="highscores-btn">View high scores</button> -->
       <p id="timer"></p>
     </div>
     <div class="middle">
       <header id="header" class="header">
         <h1>Quiz</h1>
-        <p> Welcome to the Javascript Code Quiz! You will have one minute to answer each question. At the end of the
-          quiz the amount of questions answered correctly will contribute to your overall score.</p>
+        <p> Welcome to the random quiz generator. There are 10 questions that must be answered in order to move on to the next quiz. Good luck!</p>
         <button class="start-btn" id="start-btn">Start Quiz</button>
       </header>
       <main>
@@ -29,15 +32,20 @@
           </div>
           <footer id="answer-result" class="answer-result">
             <button id="next-btn" class="next-btn hide">Next</button>
-            <button class="submit-btn hide" id="submit-btn">Submit</button>
+            
           </footer>
         </section>
         <section id="end" class="end hide">
           <h2 id="finish">Quiz Over</h2>
           <p id="score">Your score: 0</p>
           <div id="high-score-entry" class="high-score-entry">
-            <label class="Name">Enter Your Initials:</label>
-            <input type="text" id="initials" placeholder="Your Initials">
+            
+            
+            <form>
+              <div class="controls">
+                  <button type="button" class="button" onclick="resetQuiz()" value="Reset">Reset</button>
+              </div>
+          </form>
             
           </div>
         </section>
@@ -51,8 +59,18 @@
       </main>
     </div>
   </div>
+  <footer class="footer has-background-grey-light">
+    <div id="randomFact" class="content has-text-centered"></div>
+  </footer>
+  <!-- jquery script tag -->
+  <script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"
+></script>
   <script src="assets/js/script.js"></script>
   <script src="assets/js/facts.js"></script>
+
 </body>
 
 </html>
