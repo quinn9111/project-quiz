@@ -1,17 +1,26 @@
 * {
+    overflow-y: hidden;
     margin: 0;
     box-sizing: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+main {
+    padding: 40px 30px;
+    border-radius: 10px;
+    background-color: rgba(34, 34, 34, 0.212);
+    border: none;
 }
 
 :root {
     --hue-neutral: 200;
     --hue-wrong: 0;
     --hue-correct: 145;
+    --hue-new: rgba(128, 0, 0, 0.616) ;
 }
 
 .quiz-container {
+    background: linear-gradient(30deg, #f1f7ecc5, rgba(128, 0, 0, 0.616) );
     --hue: var(--hue-neutral);
     background-color: hsl(var(--hue), 100%, 20%);
     padding: 5px;
@@ -31,6 +40,7 @@
 }
 
 .top {
+    overflow-y: visible;
     font-size: 20px;
 }
 
@@ -55,6 +65,8 @@ h1 h2 {
     text-align: center;
     color: white;
     font-size: 30px;
+    border-radius: 10px;
+    background-color: rgba(34, 34, 34, 0.212);
 }
 
 .header p {
@@ -73,16 +85,29 @@ h1 h2 {
 }
 
 button {
+    color: whitesmoke;
     font-weight: bold;
-    border: solid black;
-    background: lightblue;
+    border: solid whitesmoke;
+    background: rgba(128, 0, 0, 0.61);
     padding: 10px 20px;
     font-size: 20px;
 }
+.btn {
+    --hue: var(--hue-neutral);
+    border: 1px solid whitesmoke;
+    background-color: rgba(128, 0, 0, 0.61);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
+/* .highscores-btn {
+    
+} */
 
 button:hover {
-    background-color: blueviolet;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
 }
 
 #finish {
@@ -97,12 +122,12 @@ button:hover {
     text-align: center;
 }
 
-/* label {
+label {
     color: #818181;
     font-size: 1.3em;
     text-align: right;
     font-weight: 900;
-} */
+}
 
 #clear-scores-btn {
     margin-top: 100px;
@@ -137,21 +162,17 @@ button:hover {
 }
 
 .btn.wrong {
-    --hue: var(--hue-wrong);
+    background-color: red;
 }
 
 .btn.correct {
-    --hue: var(--hue-correct);
+    background-color: green;
 }
 
-.btn {
-    --hue: var(--hue-neutral);
-    border: 1px solid hsl(var(--hue), 100%, 30%);
-    background-color: hsl(var(--hue), 100%, 50%);
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: white;
-    outline: none;
+
+
+.question-screen {
+    padding: 50px;
 }
 
 .question {
@@ -162,11 +183,11 @@ button:hover {
 
 h2 {
     font-size: 25px;
-    color: aquamarine;
+    color: whitesmoke;
 }
 
 #score {
-    color: aquamarine;
+    color: whitesmoke;
     font-size: 15px;
     padding-bottom: 100px;
 }
@@ -176,21 +197,22 @@ h2 {
 }
 
 .Name {
-    color: aquamarine;
+    color: whitesmoke;
 }
 
-/* label {
+label {
     font-size: 25px;
-} */
+}
 
 #timer {
-    color: aquamarine;
+    font-family: fantasy;
+    color: whitesmoke;
     font-size: 30px;
     padding-right: 30px;
 }
 
 #scores {
-    color: aquamarine;
+    color: whitesmoke;
     text-align: center;
     font-size: 25px;
 }
@@ -202,11 +224,4 @@ h2 {
 
 li::marker {
     margin-left: 500px;
-} */
-
-/* footer { */
-/* position: fixed; */
-/* padding: 1%;
-    margin: 1%;
-    text-align: center;
 } */
